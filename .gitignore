@@ -4,3 +4,5 @@ dist
 examples/*.png
 examples/*.jpeg
 node_modules
+.idea/
+*.iml

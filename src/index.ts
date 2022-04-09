@@ -31,7 +31,7 @@ class Captcha {
 	private _canvas: Canvas.Canvas;
 	private _value: string;
 
-	constructor(_h: number = 250) {
+	constructor(code: string | undefined = undefined, _h: number = 250) {
 		// Make sure argument is a number, limit to a range from 250 to 400
 		_h = typeof _h !== "number" || _h < 250 ? 250 : _h > 400 ? 400 : _h;
 
@@ -104,7 +104,7 @@ class Captcha {
 		// Set text value and print it to canvas
 		ctx.beginPath();
 		this._value = "";
-		while (this._value.length !== 6) this._value = randomText();
+		while (this._value.length !== 6) this._value = code || randomText();
 		ctx.fillText(this._value, 0, 0);
 
 		// Draw foreground noise
