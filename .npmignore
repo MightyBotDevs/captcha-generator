@@ -8,3 +8,4 @@ src
 .gitattributes
 CODE_OF_CONDUCT.md
 tsconfig.json
+.env
