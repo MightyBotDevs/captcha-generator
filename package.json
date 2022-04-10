@@ -1,9 +1,12 @@
 {
-	"name": "@haileybot/captcha-generator",
+	"name": "@mightybotdevs/captcha-generator",
 	"version": "1.7.0",
 	"description": "An NPM package to generate captcha images that can be used in Discord bots or various other projects",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
+	"publishConfig": {
+		"registry":"https://npm.pkg.github.com"
+	},
 	"scripts": {
 		"clean": "rm -rf coverage .nyc_output dist/**/*",
 		"compile": "tsc",
@@ -36,15 +39,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/HaileyBot/captcha-generator.git"
+		"url": "git+https://github.com/MightyBotDevs/captcha-generator.git"
 	},
 	"bugs": {
-		"url": "https://github.com/HaileyBot/captcha-generator/issues",
+		"url": "https://github.com/MightyBotDevs/captcha-generator/issues",
 		"email": "quin@cheesits456.dev"
-	},
-	"funding": {
-		"type": "individual",
-		"url": "https://donate.haileybot.com"
 	},
 	"homepage": "https://www.haileybot.com/captcha-generator",
 	"keywords": [
