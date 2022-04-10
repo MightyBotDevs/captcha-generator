@@ -7,6 +7,7 @@ Canvas.registerFont(require("path").resolve(__dirname, "../assets/Swift.ttf"), {
 interface Options {
 	code: string | undefined;
 	height: number;
+	font: string;
 }
 
 const randomText = (): string => {
@@ -38,12 +39,20 @@ class Captcha {
 	private _canvas: Canvas.Canvas;
 	private _value: string;
 
-	constructor(options: Options = { code: undefined, height: 250 }) {
+	constructor(options: Options = { code: undefined, height: 250, font: 'swift' }) {
 		const _c = options.code;
 		let _h = options.height || 250;
+		const _f = options.font || 'swift';
 
 		// Make sure argument is a number, limit to a range from 250 to 400
 		_h = _h < 250 ? 250 : _h > 400 ? 400 : _h;
+
+		// Initalize fonts
+		if(_f !== 'swift') {
+			Canvas.registerFont(require("path").resolve(__dirname, _f), {
+				family: _f.toLowerCase()
+			});
+		}
 
 		// Initialize canvas
 		this._canvas = Canvas.createCanvas(400, _h);
@@ -100,7 +109,7 @@ class Captcha {
 		}
 
 		// Set style for text
-		ctx.font = "bold 85px swift";
+		ctx.font = `bold 85px ${_f}`;
 		ctx.fillStyle = "#000";
 		// Set position for text
 		ctx.textAlign = "center";
