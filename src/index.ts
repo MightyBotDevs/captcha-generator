@@ -42,16 +42,20 @@ class Captcha {
 	constructor(options: Options = { code: undefined, height: 250, font: 'swift' }) {
 		const _c = options.code;
 		let _h = options.height || 250;
-		const _f = options.font || 'swift';
+		let _f = options.font || 'swift';
 
 		// Make sure argument is a number, limit to a range from 250 to 400
 		_h = _h < 250 ? 250 : _h > 400 ? 400 : _h;
 
 		// Initalize fonts
 		if(_f !== 'swift') {
-			Canvas.registerFont(require("path").resolve(__dirname, _f), {
-				family: _f.toLowerCase()
+			Canvas.registerFont(require("path").resolve(process.cwd(), _f), {
+				// @ts-ignore
+				family: _f.split('/').at(-1).toLowerCase()
 			});
+
+			// @ts-ignore
+			_f = _f.split('/').at(-1).toLowerCase()
 		}
 
 		// Initialize canvas
