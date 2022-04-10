@@ -12,8 +12,7 @@
 		"compile": "tsc",
 		"test": "nyc mocha",
 		"coverage": "nyc report -r lcovonly",
-		"build": "npm run clean && npm run compile && npm test && npm run coverage",
-		"postinstall": "tsc"
+		"build": "npm run clean && npm run compile && npm test && npm run coverage"
 	},
 	"nyc": {
 		"all": true
