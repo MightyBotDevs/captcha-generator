@@ -46,6 +46,49 @@ describe("src/index.ts", function () {
 			});
 		});
 	});
+
+	describe("CaptchaWithOwnText", function () {
+		it("should export function 'captcha'", function () {
+			assert.strictEqual(typeof Captcha, "function");
+		});
+
+		const captcha = new Captcha({code: "abcdef"});
+		describe("captcha", function () {
+			it("should export an object", function () {
+				assert.strictEqual(typeof captcha, "object");
+			});
+
+			describe("value", function () {
+				it("should be a string", function () {
+					assert.strictEqual(typeof captcha.value, "string");
+				});
+				it("should be 6 characters long", function () {
+					assert.strictEqual(captcha.value.length, 6);
+				});
+				it("should only contain letters", function () {
+					assert.match(captcha.value, /^[a-z]+$/i);
+				});
+			});
+
+			describe("PNGStream", function () {
+				it("should be an instance of canvas PNG Stream", function () {
+					assert.strictEqual(captcha.PNGStream instanceof Canvas.PNGStream, true);
+				});
+			});
+
+			describe("JPEGStream", function () {
+				it("should be an instance of canvas JPEG Stream", function () {
+					assert.strictEqual(captcha.JPEGStream instanceof Canvas.JPEGStream, true);
+				});
+			});
+
+			describe("dataURL", function () {
+				it("should be a string", function () {
+					assert.strictEqual(typeof captcha.dataURL, "string");
+				});
+			});
+		});
+	});
 });
 
 const fs = require("fs");
