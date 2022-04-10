@@ -40,7 +40,7 @@ class Captcha {
 
 	constructor(options: Options = { code: undefined, height: 250 }) {
 		const _c = options.code;
-		let _h = options.height;
+		let _h = options.height || 250;
 
 		// Make sure argument is a number, limit to a range from 250 to 400
 		_h = _h < 250 ? 250 : _h > 400 ? 400 : _h;
