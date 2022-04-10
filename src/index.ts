@@ -4,12 +4,19 @@ Canvas.registerFont(require("path").resolve(__dirname, "../assets/Swift.ttf"), {
 	family: "swift"
 });
 
-const randomText = (): string =>
-		Math.random()
-			.toString(36)
-			.replace(/[^a-z]|[gkqr]+/gi, "")
-			.substring(0, 6)
-			.toUpperCase(),
+interface Options {
+	code: string | undefined;
+	height: number;
+}
+
+const randomText = (): string => {
+	const chars = "ABCDEFHIJLMNOPSTUVWXYZabcdefhijlmnopstuvwxyz";
+	let text = "";
+	for (let i = 0; i < 6; i++) {
+		text += chars.charAt(Math.floor(Math.random() * chars.length));
+	}
+	return text;
+},
 	shuffleArray = (arr: number[]): number[] => {
 		let i: number = arr.length,
 			temp: number,
@@ -31,9 +38,12 @@ class Captcha {
 	private _canvas: Canvas.Canvas;
 	private _value: string;
 
-	constructor(code: string | undefined = undefined, _h: number = 250) {
+	constructor(options: Options = { code: undefined, height: 250 }) {
+		const _c = options.code;
+		let _h = options.height;
+
 		// Make sure argument is a number, limit to a range from 250 to 400
-		_h = typeof _h !== "number" || _h < 250 ? 250 : _h > 400 ? 400 : _h;
+		_h = _h < 250 ? 250 : _h > 400 ? 400 : _h;
 
 		// Initialize canvas
 		this._canvas = Canvas.createCanvas(400, _h);
@@ -77,7 +87,7 @@ class Captcha {
 		ctx.fillStyle = "#000";
 		ctx.lineWidth = 0;
 		// Draw circles
-		for (let i = 0; i < 200; i++) {
+		for (let i = 0; i < 100; i++) {
 			ctx.beginPath();
 			ctx.arc(
 				Math.round(Math.random() * 360) + 20, // X coordinate
@@ -90,7 +100,7 @@ class Captcha {
 		}
 
 		// Set style for text
-		ctx.font = "bold 90px swift";
+		ctx.font = "bold 85px swift";
 		ctx.fillStyle = "#000";
 		// Set position for text
 		ctx.textAlign = "center";
@@ -103,8 +113,7 @@ class Captcha {
 		ctx.rotate(Math.random() - 0.5);
 		// Set text value and print it to canvas
 		ctx.beginPath();
-		this._value = "";
-		while (this._value.length !== 6) this._value = code || randomText();
+		this._value = _c || randomText();
 		ctx.fillText(this._value, 0, 0);
 
 		// Draw foreground noise
