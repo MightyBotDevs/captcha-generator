@@ -44,6 +44,7 @@ class Captcha {
 		const _c = options.code;
 		let _h = options.height || 250;
 		let _f = options.font || 'swift';
+		let _l = options.length || 6;
 
 		// Make sure argument is a number, limit to a range from 250 to 400
 		_h = _h < 250 ? 250 : _h > 400 ? 400 : _h;
@@ -127,7 +128,7 @@ class Captcha {
 		ctx.rotate(Math.random() - 0.5);
 		// Set text value and print it to canvas
 		ctx.beginPath();
-		this._value = _c || randomText(length);
+		this._value = _c || randomText(_l);
 		ctx.fillText(this._value, 0, 0);
 
 		// Draw foreground noise
