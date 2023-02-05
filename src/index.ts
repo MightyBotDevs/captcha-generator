@@ -8,12 +8,13 @@ interface Options {
 	code: string | undefined;
 	height: number;
 	font: string;
+	length: number;
 }
 
-const randomText = (): string => {
+const randomText = (length: number): string => {
 	const chars = "ABCDEFHIJLMNOPSTUVWXYZabcdefhijlmnopstuvwxyz";
 	let text = "";
-	for (let i = 0; i < 6; i++) {
+	for (let i = 0; i < length; i++) {
 		text += chars.charAt(Math.floor(Math.random() * chars.length));
 	}
 	return text;
@@ -39,7 +40,7 @@ class Captcha {
 	private _canvas: Canvas.Canvas;
 	private _value: string;
 
-	constructor(options: Options = { code: undefined, height: 250, font: 'swift' }) {
+	constructor(options: Options = { code: undefined, length: 6, height: 250, font: 'swift' }) {
 		const _c = options.code;
 		let _h = options.height || 250;
 		let _f = options.font || 'swift';
@@ -126,7 +127,7 @@ class Captcha {
 		ctx.rotate(Math.random() - 0.5);
 		// Set text value and print it to canvas
 		ctx.beginPath();
-		this._value = _c || randomText();
+		this._value = _c || randomText(length);
 		ctx.fillText(this._value, 0, 0);
 
 		// Draw foreground noise
