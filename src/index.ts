@@ -102,7 +102,7 @@ class Captcha {
 		ctx.fillStyle = "#000";
 		ctx.lineWidth = 0;
 		// Draw circles
-		for (let i = 0; i < 100; i++) {
+		for (let i = 0; i < 150; i++) {
 			ctx.beginPath();
 			ctx.arc(
 				Math.round(Math.random() * 360) + 20, // X coordinate
@@ -120,7 +120,7 @@ class Captcha {
 		// Set position for text
 		ctx.textAlign = "center";
 		ctx.textBaseline = "top";
-		ctx.translate(0, _h);
+		ctx.translate(15, _h);
 		ctx.translate(
 			Math.round(Math.random() * 100 - 50) + 200,
 			-1 * Math.round(Math.random() * (_h / 4) - _h / 8) - _h / 2
