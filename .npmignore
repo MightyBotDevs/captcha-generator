@@ -9,3 +9,4 @@ src
 CODE_OF_CONDUCT.md
 tsconfig.json
 .env
+.idea/
