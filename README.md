@@ -1,7 +1,7 @@
 <h1 align="center">Captcha Generator</h1>
 <p align="center">
-	<a href="https://www.npmjs.com/package/@haileybot/captcha-generator" title="NPM version"><img alt="NPM version" src="https://img.shields.io/npm/v/@haileybot/captcha-generator?logo=npm"/></a>
-	<a href="https://www.npmjs.com/package/@haileybot/captcha-generator" title="NPM downloads"><img alt="NPM downloads" src="https://img.shields.io/npm/dt/@haileybot/captcha-generator?logo=npm"/></a>
+	<a href="https://www.npmjs.com/package/@mightybotdevs-captcha-generator" title="NPM version"><img alt="NPM version" src="https://img.shields.io/npm/v/@mightybotdevs-captcha-generator?logo=npm"/></a>
+	<a href="https://www.npmjs.com/package/@mightybotdevs-captcha-generator" title="NPM downloads"><img alt="NPM downloads" src="https://img.shields.io/npm/dt/@mightybotdevs-captcha-generator?logo=npm"/></a>
 	<a href="https://david-dm.org/HaileyBot/captcha-generator" title="Dependencies"><img alt="Dependencies" src="https://img.shields.io/david/HaileyBot/captcha-generator?logo=npm"/></a>
 	<br>
 	<a href="https://github.com/HaileyBot/captcha-generator/blob/master/LICENSE" title="License"><img alt="License" src="https://img.shields.io/github/license/HaileyBot/captcha-generator?logo=github&logoColor=black"/></a>
@@ -19,7 +19,7 @@ Captcha Generator is a Node library for quickly and easily generating captcha im
 Use the package manager [npm](https://www.npmjs.com/) to install Captcha Generator
 
 ```bash
-npm i @haileybot/captcha-generator
+npm i @mightybotdevs-captcha-generator
 ```
 
 ## Usage
@@ -28,7 +28,7 @@ npm i @haileybot/captcha-generator
 
 ```js
 // Import the module
-const Captcha = require("@haileybot/captcha-generator");
+const Captcha = require("@mightybotdevs-captcha-generator");
 
 // Create a new Captcha object
 //  - Optional argument to specify image height (250 to 400px, default 250)
@@ -47,7 +47,7 @@ console.log(captcha.value);
 ```js
 const path = require("path"),
 	fs = require("fs"),
-	Captcha = require("@haileybot/captcha-generator");
+	Captcha = require("@mightybotdevs-captcha-generator");
 
 let captcha = new Captcha();
 captcha.PNGStream.pipe(fs.createWriteStream(path.join(__dirname, `${captcha.value}.png`)));
@@ -59,7 +59,7 @@ captcha.JPEGStream.pipe(fs.createWriteStream(path.join(__dirname, `${captcha.val
 This example assumes you already have the core framework of a Discord Bot set up
 
 ```js
-const Captcha = require("@haileybot/captcha-generator");
+const Captcha = require("@mightybotdevs-captcha-generator");
 
 // Use this function for blocking certain commands or features from automated self-bots
 function verifyHuman(msg) {
