@@ -1,8 +1,8 @@
-import * as Canvas from "canvas";
+import * as Canvas from "@napi-rs/canvas";
+import {GlobalFonts} from "@napi-rs/canvas";
+import {ReadableStream} from "node:stream/web";
 
-Canvas.registerFont(require("path").resolve(__dirname, "../assets/Swift.ttf"), {
-	family: "swift"
-});
+GlobalFonts.registerFromPath(require("path").resolve(__dirname, "../assets/Swift.ttf"), "swift");
 
 interface Options {
 	code: string | undefined;
@@ -51,10 +51,7 @@ class Captcha {
 
 		// Initalize fonts
 		if(_f !== 'swift') {
-			Canvas.registerFont(require("path").resolve(process.cwd(), _f), {
-				// @ts-ignore
-				family: _f.split('/').at(-1).toLowerCase()
-			});
+			GlobalFonts.registerFromPath(require("path").resolve(process.cwd(), _f), _f.split('/').at(-1)?.toLowerCase() || "Unknown-Font");
 
 			// @ts-ignore
 			_f = _f.split('/').at(-1).toLowerCase()
@@ -154,12 +151,12 @@ class Captcha {
 		return this._value;
 	}
 
-	get PNGStream(): Canvas.PNGStream {
-		return this._canvas.createPNGStream();
+	get PNGStream(): ReadableStream<Buffer> {
+		return this._canvas.encodeStream("png");
 	}
 
-	get JPEGStream(): Canvas.JPEGStream {
-		return this._canvas.createJPEGStream();
+	get JPEGStream(): ReadableStream<Buffer> {
+		return this._canvas.encodeStream("jpeg");
 	}
 
 	get dataURL(): string {

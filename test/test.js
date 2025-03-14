@@ -1,6 +1,6 @@
 "use strict";
 const assert = require("assert");
-const Canvas = require("canvas");
+const Canvas = require("@napi-rs/canvas");
 const Captcha = require("../");
 
 describe("src/index.ts", function () {
@@ -29,13 +29,13 @@ describe("src/index.ts", function () {
 
 			describe("PNGStream", function () {
 				it("should be an instance of canvas PNG Stream", function () {
-					assert.strictEqual(captcha.PNGStream instanceof Canvas.PNGStream, true);
+					assert.strictEqual(captcha.PNGStream instanceof ReadableStream, true);
 				});
 			});
 
 			describe("JPEGStream", function () {
 				it("should be an instance of canvas JPEG Stream", function () {
-					assert.strictEqual(captcha.JPEGStream instanceof Canvas.JPEGStream, true);
+					assert.strictEqual(captcha.JPEGStream instanceof ReadableStream, true);
 				});
 			});
 
@@ -72,13 +72,13 @@ describe("src/index.ts", function () {
 
 			describe("PNGStream", function () {
 				it("should be an instance of canvas PNG Stream", function () {
-					assert.strictEqual(captcha.PNGStream instanceof Canvas.PNGStream, true);
+					assert.strictEqual(captcha.PNGStream instanceof ReadableStream, true);
 				});
 			});
 
 			describe("JPEGStream", function () {
 				it("should be an instance of canvas JPEG Stream", function () {
-					assert.strictEqual(captcha.JPEGStream instanceof Canvas.JPEGStream, true);
+					assert.strictEqual(captcha.JPEGStream instanceof ReadableStream, true);
 				});
 			});
 

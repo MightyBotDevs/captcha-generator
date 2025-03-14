@@ -1,7 +1,10 @@
 const path = require("path"),
-	fs = require("fs"),
+	fs = require("fs/promises"),
 	Captcha = require("../");
 
-let captcha = new Captcha();
-captcha.PNGStream.pipe(fs.createWriteStream(path.join(__dirname, `${captcha.value}.png`)));
-captcha.JPEGStream.pipe(fs.createWriteStream(path.join(__dirname, `${captcha.value}.jpeg`)));
+(async () => {
+	let captcha = new Captcha();
+	await fs.writeFile(path.join(__dirname, 'captcha.jpeg'), captcha.JPEGStream)
+	await fs.writeFile(path.join(__dirname, 'captcha.png'), captcha.PNGStream)
+})()
+
